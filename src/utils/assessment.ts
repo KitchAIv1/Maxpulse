@@ -1,6 +1,7 @@
 import { Question, UserProfile, AssessmentResults, Priority, AppState } from '../types/assessment';
 import { healthQuestions } from '../data/questions';
 import { wealthQuestions } from '../data/wealthQuestions';
+import { hybridQuestions } from '../data/hybridQuestions';
 
 // Get current question set based on priority
 export const getCurrentQuestions = (priority: Priority | null): Question[] => {
@@ -10,8 +11,8 @@ export const getCurrentQuestions = (priority: Priority | null): Question[] => {
     case 'wealth':
       return wealthQuestions;
     case 'both':
-      // For now, combine both question sets - can be optimized later
-      return [...healthQuestions, ...wealthQuestions];
+      // Use optimized hybrid questions (20 total)
+      return hybridQuestions;
     default:
       return healthQuestions;
   }
@@ -25,7 +26,7 @@ export const getAssessmentHeader = (priority: Priority | null): string => {
     case 'wealth':
       return 'Your Wealth, Amplified by AI';
     case 'both':
-      return 'Your Life, Transformed by AI';
+      return 'Transform Your Health & Build Your Business Together';
     default:
       return 'Your Assessment';
   }

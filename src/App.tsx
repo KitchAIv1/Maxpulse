@@ -11,6 +11,7 @@ import { EducationalSlide } from './components/EducationalSlide';
 import { SectionCompleteCelebration } from './components/SectionCompleteCelebration';
 import { LongevityInsightPage } from './components/LongevityInsightPage';
 import { WealthInsightPage } from './components/WealthInsightPage';
+import { HybridInsightPage } from './components/HybridInsightPage';
 import { ResultsDashboard } from './components/ResultsDashboard';
 import { AnimatedProgress } from './components/AnimatedProgress';
 import { FloatingButton } from './components/FloatingButton';
@@ -232,8 +233,10 @@ export default function App() {
     
     // Priority order: Educational Slide > Section Complete > Results > Motivational > Next Question
     // Check for educational slide first
+    console.log('Checking for educational slide after question:', currentQuestion.id, 'Priority:', selectedPriority);
     const educationalSlide = await getEducationalSlideForQuestion(currentQuestion.id, selectedPriority);
-    if (educationalSlide && (selectedPriority === 'health' || selectedPriority === 'wealth')) {
+    console.log('Educational slide found:', educationalSlide);
+    if (educationalSlide && (selectedPriority === 'health' || selectedPriority === 'wealth' || selectedPriority === 'both')) {
       // Show educational slide
       setCurrentEducationalSlide(educationalSlide);
       setTimeout(() => {
@@ -604,8 +607,12 @@ export default function App() {
                         <LongevityInsightPage
                           onContinue={handleContinueFromLongevityInsight}
                         />
-                      ) : (
+                      ) : selectedPriority === 'wealth' ? (
                         <WealthInsightPage
+                          onContinue={handleContinueFromLongevityInsight}
+                        />
+                      ) : (
+                        <HybridInsightPage
                           onContinue={handleContinueFromLongevityInsight}
                         />
                       )

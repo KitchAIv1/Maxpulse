@@ -62,12 +62,26 @@ export function getEducationalSlideAfterQuestion(questionId: string): Educationa
 
 // Combined function to get educational slide from both health and wealth slides
 export const getEducationalSlideForQuestion = async (questionId: string, priority: 'health' | 'wealth' | 'both' | null): Promise<EducationalSlideData | any> => {
+  console.log('getEducationalSlideForQuestion called with:', questionId, priority);
+  // For hybrid path, use hybrid educational slides
+  if (priority === 'both') {
+    console.log('Loading hybrid educational slides...');
+    try {
+      const { getHybridEducationalSlideAfterQuestion } = await import('./hybridEducationalSlides');
+      const result = getHybridEducationalSlideAfterQuestion(questionId);
+      console.log('Hybrid slide result:', result);
+      return result;
+    } catch (error) {
+      console.warn('Could not load hybrid educational slides:', error);
+    }
+  }
+  
   // First check health slides
   const healthSlide = getEducationalSlideAfterQuestion(questionId);
   if (healthSlide) return healthSlide;
   
-  // If not found and we're in wealth mode, check wealth slides
-  if (priority === 'wealth' || priority === 'both') {
+  // Then check wealth slides if priority is wealth
+  if (priority === 'wealth') {
     try {
       const { getWealthEducationalSlideAfterQuestion } = await import('./wealthEducationalSlides');
       return getWealthEducationalSlideAfterQuestion(questionId);
