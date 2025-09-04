@@ -32,6 +32,7 @@ export const wealthEducationalSlides: WealthEducationalSlideData[] = [
     title: 'The Power of YOU as the Ultimate Income Maker',
     subtitle: 'Your Greatest Asset is Within You',
     content: 'You are your most valuable investment. Your health, skills, and mindset are the foundation of all wealth creation.',
+    video: '/poweryou.mp4',
     triggerAfterQuestion: 'w8', // After income diversification question
     ctaText: 'Unlock Your Potential',
     theme: 'gold',
@@ -46,6 +47,7 @@ export const wealthEducationalSlides: WealthEducationalSlideData[] = [
     title: 'Abundance of Opportunities',
     subtitle: 'Recognizing the Wealth Around You',
     content: 'Abundance isn\'t about having more - it\'s about recognizing what\'s already available and tuning into the opportunities that surround you.',
+    video: '/opportunities.mp4',
     triggerAfterQuestion: 'w12', // After future planning question
     ctaText: 'Embrace Abundance',
     theme: 'green',
@@ -60,6 +62,7 @@ export const wealthEducationalSlides: WealthEducationalSlideData[] = [
     title: 'The Power of Now',
     subtitle: 'Using Awareness and Presence for Wealth',
     content: 'True wealth is created in the present moment. When you act with presence and awareness, you align with the natural flow of abundance.',
+    video: '/change.mp4',
     triggerAfterQuestion: 'w14', // After business curiosity question
     ctaText: 'Act with Presence',
     theme: 'blue',
